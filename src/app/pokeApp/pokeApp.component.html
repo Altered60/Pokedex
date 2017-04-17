@@ -1,0 +1,50 @@
+<body>
+  <div style = "text-align: center;">
+    <h1>PokeApp</h1>
+
+    <button (click)="getPokedex()" class="btn btn-default" type="button">Accéder au Pokédex</button>
+
+    <img src="https://pro-rankedboost.netdna-ssl.com/wp-content/uploads/2016/07/Pokemon-Go-Pok%C3%A9dex-300x229.png">
+  </div>
+  <span>
+    <span *ngIf="pokedexVisible">
+      <FORM>
+        <select class="form-control" [(ngModel)]="fiche.entry_number">
+          <option *ngFor="let listePokemons of listePokemons">{{listePokemons.entry_number}}</option>
+        </select>
+
+        <button type="submit" (click)="go()" class="btn btn-default" type="button">Go !</button>
+      </FORM>
+    </span>
+
+    <span *ngIf="!pokedexVisible"></span>
+  </span>
+
+  <span>
+    <span *ngIf="visible">
+      <div class="spoiler">
+        <h3>#{{this.fiche.entry_number}} {{this.pokemon.name}}</h3>
+        Base Experience : {{this.pokemon.base_experience}}<br/>
+        Height : {{this.pokemon.height}} dm<br/>
+        Weight : {{this.pokemon.weight}} hg<br/>
+        Abilities :<br/>
+        <span *ngFor="let listeAbilities of listeAbilities">
+          - {{listeAbilities.ability.name}}<br/>
+        </span>
+        Stats :<br/>
+        <span *ngFor="let listeStats of listeStats">
+          - {{listeStats.stat.name}} : {{listeStats.base_stat}}<br/>
+        </span>
+      </div>
+    </span>
+    <span *ngIf="!visible"></span>
+  </span>
+
+  <div>
+    <div class="pokedex" *ngFor="let listePokemons of listePokemons" style= "display: block; float: left; width: 10%; border-width: 1px; border-style: solid; border-color: #D3D3D3; margin:0.5%;">
+      <span class="badge">#{{listePokemons.entry_number}}</span>
+
+      <div style="text-align: center;">{{listePokemons.pokemon_species.name}}</div>
+    </div>
+  </div>
+</body>
